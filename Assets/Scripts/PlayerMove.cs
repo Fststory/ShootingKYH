@@ -19,11 +19,13 @@ public class PlayerMove : MonoBehaviour
     // 매 프레임마다 반복해서 실행하는 함수
     void Update()
     {
+        #region 이동 공식 적용 방법
         //Vector3 direction = new Vector3(1, 1, 0);
         //transform.position += Vector3.right * moveSpeed;
         //transform.position += direction * moveSpeed;
 
         //print(transform.position);
+        #endregion
 
         // 사용자의 입력 받기
         //float h = Input.GetAxis("Horizontal");
@@ -38,6 +40,7 @@ public class PlayerMove : MonoBehaviour
         //transform.eulerAngles += direction * moveSpeed * Time.deltaTime;
         //transform.localScale += direction * moveSpeed * Time.deltaTime;
 
+        #region 사용자의 키 입력 이벤트 함수들
         // 특정 키를 입력했을 때 사용하는 함수(Get, GetDown, GetUp)
         //bool value = Input.GetButton("Horizontal");
 
@@ -45,5 +48,8 @@ public class PlayerMove : MonoBehaviour
         //{
         //    print("F1 키를 눌렀습니다!");
         //}
+        #endregion
+
+        
     }
 }
