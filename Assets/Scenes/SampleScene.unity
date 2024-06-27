@@ -620,7 +620,8 @@ GameObject:
   - component: {fileID: 1381017422}
   - component: {fileID: 1381017427}
   - component: {fileID: 1381017428}
-  m_Layer: 0
+  - component: {fileID: 1381017429}
+  m_Layer: 6
   m_Name: Player
   m_TagString: MyPlayer
   m_Icon: {fileID: 0}
@@ -655,7 +656,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -741,7 +742,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8848877887317707845, guid: 322a820594e40044db28f07c12ae995f, type: 3}
   firePosition: {fileID: 884353354}
-  audioSource: {fileID: 0}
+  sounds:
+  - {fileID: 8300000, guid: 32e165c616e5fb9428f59a87bd5a1cf3, type: 3}
+  - {fileID: 8300000, guid: 4faa61ee7d30d5e4c954e6ab988d3bab, type: 3}
 --- !u!82 &1381017428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -752,7 +755,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 32e165c616e5fb9428f59a87bd5a1cf3, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -838,6 +841,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &1381017429
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381017421}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2004027014
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class EnemyMove : MonoBehaviour
     public int downRate = 35;
 
     Vector3 dir;
+    //AudioSource explosionSound;
 
     void Start()
     {
@@ -37,10 +38,21 @@ public class EnemyMove : MonoBehaviour
         // 그렇지 않다면, 방향을 플레이어 쪽으로 설정한다.
         else
         {
-            // 플레이어를 향한 방향
-            dir = player.transform.position - transform.position;
-            dir.Normalize();
-        }       
+            // 만일, 플레이어가 있다면...
+            if (player != null)
+            {
+                // 플레이어를 향한 방향
+                dir = player.transform.position - transform.position;
+                dir.Normalize();
+            }
+            else
+            {
+                dir = Vector3.down;
+            }
+        }
+
+        //// 오디오 컴포넌트를 캐싱한다.
+        //explosionSound = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -51,4 +63,26 @@ public class EnemyMove : MonoBehaviour
         // p = p0 + vt
         transform.position += dir * moveSpeed * Time.deltaTime;
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // 충돌한 대상이 플레이어라면...
+        if(other.gameObject.name=="Player")
+        {
+            // 플레이어를 제거하고
+            Destroy(other.gameObject);
+
+            // 나도 제거한다.
+            Destroy(gameObject);
+        }
+
+        //PlayerMove player = other.gameObject.GetComponent<PlayerMove>();
+        //if (player != null)
+        //{
+        //    Destroy(other.gameObject);
+        //}
+        //Destroy(gameObject);
+    }
+
 }

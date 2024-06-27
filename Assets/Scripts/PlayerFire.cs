@@ -9,8 +9,10 @@ public class PlayerFire : MonoBehaviour
     public GameObject firePosition;
     // 에디터의 리플렉션 덕분에 예외적으로 배열의 갯수를 지정해주지 않아도 됨.
     //public GameObject[] firePositions;
-    public AudioSource audioSource;
-    
+
+    public AudioClip[] sounds;
+
+    AudioSource audioSource;    
 
 
     #region 총알 생성 
@@ -21,7 +23,10 @@ public class PlayerFire : MonoBehaviour
     #endregion
     void Start()
     {
-        audioSource.volume = 0.2f;
+        // AudioSource 컴포넌트를 가져오는 방법
+        audioSource = transform.GetComponent<AudioSource>();
+        
+        
     }
 
     void Update()
@@ -42,7 +47,13 @@ public class PlayerFire : MonoBehaviour
             //Vector3 firePos = transform.position + new Vector3(0, 1.5f, 0);
             //go.transform.position = firePos;
 
+            // 4. 생성된 총알의 BulletMove 컴포넌트에 있는 Player 변수에 자기 자신을 넣는다.
+            go.GetComponent<BulletMove>().player = gameObject;
+
+
             // 총알 발사음을 실행한다.
+            audioSource.clip = sounds[0];
+            audioSource.volume = 0.2f;
             audioSource.Play();
             //audioSource.Stop();
             //audioSource.Pause();
@@ -62,5 +73,13 @@ public class PlayerFire : MonoBehaviour
         //}
         #endregion
 
+    }
+
+    // 폭발 효과음을 플레이하는 함수
+    public void PlayExplosionSound()
+    {
+        audioSource.clip = sounds[1];
+        audioSource.volume = 1.0f;
+        audioSource.Play();
     }
 }
