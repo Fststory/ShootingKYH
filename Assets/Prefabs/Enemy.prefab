@@ -122,6 +122,7 @@ MonoBehaviour:
   moveSpeed: 7
   player: {fileID: 0}
   downRate: 60
+  explosionPrefab: {fileID: 8194992990867289339, guid: aec1f7b5a77ab0e4e84c574219596d22, type: 3}
 --- !u!54 &5768272006144423622
 Rigidbody:
   m_ObjectHideFlags: 0
