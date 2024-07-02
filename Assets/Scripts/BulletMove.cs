@@ -78,7 +78,11 @@ public class BulletMove : MonoBehaviour
         // enemy 변수에 값이 있다면...
         if(enemy != null)
         {
+            // 충돌한 에너미 오브젝트를 제거한다.
             Destroy(col.gameObject);
+
+            // GameManager에 있는 currentScore 값을 1 추가한다.
+            GameManager.gm.AddScore(1);
 
             // 폭발 이펙트 프리팹을 에너미가 있던 자리에 생성한다.
             GameObject fx = Instantiate(explosionPrefab,col.transform.position,col.transform.rotation);
@@ -110,10 +114,14 @@ public class BulletMove : MonoBehaviour
     {
         if (pFire.useObjectPool)
         {
-        // 자기 자신(gameObject)을 PlayerFire의 List bullets에 추가하고 비활성화 한다.
-        pFire.bullets.Add(gameObject);
-        lifeSpan = 3.0f;
-        gameObject.SetActive(false);
+            // 자기 자신(gameObject)을 PlayerFire의 List bullets에 추가하고 비활성화 한다.
+            pFire.bullets.Add(gameObject);
+            lifeSpan = 3.0f;
+            gameObject.SetActive(false);
+            if (player != null)
+            {
+                gameObject.transform.parent = player.transform;
+            }
         }
         else if (pFire.useArray)
         {
@@ -126,6 +134,10 @@ public class BulletMove : MonoBehaviour
                     pFire.bulletArray[i] = gameObject;
                     gameObject.SetActive(false);
                     lifeSpan = 3.0f;
+                    if (player != null)
+                    {
+                        gameObject.transform.parent = player.transform;
+                    }
                     break;
                 }
             }

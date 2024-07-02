@@ -54,6 +54,8 @@ public class EnemyMove : MonoBehaviour
 
         //// 오디오 컴포넌트를 캐싱한다.
         //explosionSound = GetComponent<AudioSource>();
+
+        //print("읽은 값: " + GameManager.gm.BestScore);
     }
     
     void Update()
@@ -74,9 +76,11 @@ public class EnemyMove : MonoBehaviour
             // 플레이어를 제거하고
             Destroy(other.gameObject);
 
-            // 나도 제거한다.
-            Destroy(gameObject);
+            // 최고 점수를 저장한다.
+            PlayerPrefs.SetInt("BestScore", GameManager.gm.BestScore);
         }
+        // 나도 제거한다.
+        Destroy(gameObject);
 
         //PlayerMove player = other.gameObject.GetComponent<PlayerMove>();
         //if (player != null)
