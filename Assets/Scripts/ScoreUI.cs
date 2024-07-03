@@ -10,7 +10,10 @@ public class ScoreUI : MonoBehaviour
 
     void Start()
     {
-        
+        // 폰트 색상
+        //text_bestScore.color = new Color(1, 1, 0, 0.5f);
+        // 폰트 크기
+        //text_bestScore.fontSize = 100;
     }
 
     void Update()

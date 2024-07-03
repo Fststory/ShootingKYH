@@ -78,6 +78,9 @@ public class EnemyMove : MonoBehaviour
 
             // 최고 점수를 저장한다.
             PlayerPrefs.SetInt("BestScore", GameManager.gm.BestScore);
+
+            // 게임 오버 UI를 활성화한다.
+            GameManager.gm.ShowGameOverUI();
         }
         // 나도 제거한다.
         Destroy(gameObject);
