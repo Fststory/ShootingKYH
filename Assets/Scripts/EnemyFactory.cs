@@ -35,6 +35,8 @@ public class EnemyFactory : MonoBehaviour
             // 에너미를 생성한다.
             GameObject enemy = Instantiate(enemyPrefab);
             enemy.transform.position = transform.position;
+            enemy.transform.rotation = transform.rotation;
+            
 
             // 경과 시간을 다시 0으로 초기화한다.
             currentTime = 0;

@@ -13,7 +13,10 @@ public class GameManager : MonoBehaviour
 
     public ScoreUI scoreUI;
     public GameObject gameOverUI;
-        
+    public GameObject bossObject;
+    public GameObject[] enemyFactories;
+    public int bossAppearScore = 10;
+
     int currentScore;
 
     public int BestScore { get { return bestScore; } }
@@ -62,7 +65,8 @@ public class GameManager : MonoBehaviour
         currentScore += point;
 
         // 2. 현재 점수를 UI에 출력한다.
-        scoreUI.text_currentScore.text = currentScore.ToString();
+        //scoreUI.text_currentScore.text = currentScore.ToString();
+        scoreUI.tmp_currentScore.text = currentScore.ToString();
 
         // 3. 만일, 현재 점수가 최고 점수보다 더 높다면...
         if(currentScore>bestScore)
@@ -72,6 +76,23 @@ public class GameManager : MonoBehaviour
 
             // 3-2. 변경된 최고점수를 UI에 출력한다.
             scoreUI.text_bestScore.text = bestScore.ToString();
+        }
+
+        // 만일, 보스가 비활성화 상태라면...
+        if (!bossObject.activeInHierarchy)
+        {
+            // 4. 만일, 현재 점수가 보스 등장에 필요한 점수를 넘어서면
+            if (currentScore > bossAppearScore)
+            {
+                // 4-1. 보스를 활성화한다.
+                bossObject.SetActive(true);
+
+                // 4-2. 기존의 EnemyFactory들은 모두 비활성화 처리를 한다.
+                for(int i = 0; i < enemyFactories.Length; i++)
+                {
+                    enemyFactories[i].SetActive(false);
+                }
+            }
         }
     }
 

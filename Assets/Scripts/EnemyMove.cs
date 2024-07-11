@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     // 지정된 확률에 따라 아래로 또는 플레이어 방향으로 이동 방향을 결정한다.
     // 확률에 따라 추첨한다. -> 확률 변수, 랜덤 값
+        
 
     // 필용 요소: 방향, 속력(크기)
     public float moveSpeed = 0.5f;
@@ -45,6 +46,13 @@ public class EnemyMove : MonoBehaviour
                 // 플레이어를 향한 방향
                 dir = player.transform.position - transform.position;
                 dir.Normalize();
+
+                // 나의 정면 방향을 플레이어를 향한 방향으로 조정한다.
+                // 1. transform 내부의 계산식을 활용한 방법
+                //transform.up = dir * -1;
+                // 2. Quaternion 클래스의 함수를 이용해서 각도를 계산하는 방식
+                Quaternion rot = Quaternion.LookRotation(dir, transform.up);
+                transform.rotation = rot;
             }
             else
             {
